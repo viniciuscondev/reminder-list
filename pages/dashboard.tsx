@@ -1,0 +1,38 @@
+import React from 'react';
+import { useSession } from 'next-auth/client';
+import styled from 'styled-components';
+
+import Header from '../src/components/Header';
+import NewTask from '../src/components/NewTask';
+import Task from '../src/components/Task';
+
+const TaskContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export default function Home() {
+  const [session] = useSession();
+
+  return (
+    <>
+      <Header />
+      {session ? (
+        <>
+          <h1>
+            Olá,
+            {' '}
+            {session.user.name}
+          </h1>
+          <TaskContainer>
+            <NewTask />
+            <Task />
+          </TaskContainer>
+        </>
+      ) : (
+        <h1>Você não tem permissão para acessar está página, por favor, faça o login</h1>
+      )}
+    </>
+  );
+}

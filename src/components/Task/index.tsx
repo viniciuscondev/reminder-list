@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 const TaskBox = styled.div`
@@ -23,6 +24,7 @@ const TaskBox = styled.div`
 export default function Task() {
   const [tasks, setTasks] = useState([]);
   const [session] = useSession();
+  const router = useRouter();
 
   async function getTasks() {
     const response = await fetch('/api/tasks', {
@@ -40,6 +42,8 @@ export default function Task() {
       method: 'DELETE',
       body: task,
     });
+
+    router.reload();
   }
 
   useEffect(() => {

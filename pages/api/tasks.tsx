@@ -20,19 +20,20 @@ export default async function ListTasks(req: NextApiRequest, res: NextApiRespons
     } catch (err) {
       res.status(500).send('Erro no servidor');
     }
-    // } else if (req.method === 'DELETE') {
-    //   try {
-    //     const data = req.body;
+  } else if (req.method === 'DELETE') {
+    try {
+      const data = req.body;
 
-    //     console.log(data.task);
+      console.log(data);
 
-    //     const { db } = await connect();
+      const { db } = await connect();
 
-  // eslint-disable-next-line max-len
-  // const response = await db.collection('tasks').updateOne({ use_email: 'abexanderconde@gmail.com' }, { $pull: { task:  } });
-  //   } catch (err) {
-  //     res.status(500).send('Falha ao deletar tarefa');
-  //   }
-  // }
+      // eslint-disable-next-line max-len
+      const response = await db.collection('tasks').updateOne({ user_email: 'abexanderconde@gmail.com' }, { $pull: { task: data } });
+
+      res.status(200).json(response);
+    } catch (err) {
+      res.status(500).send('Falha ao deletar tarefa');
+    }
   }
 }

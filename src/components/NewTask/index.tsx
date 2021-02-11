@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export default function NewTask() {
-  const [task, setTask] = useState('');
+  const [task, setTask] = useState([]);
 
   async function handleTask() {
     // event.preventDefault();
@@ -21,7 +21,7 @@ export default function NewTask() {
       <label htmlFor="newtask">
         Adicionar tarefa:
         {' '}
-        <input type="text" id="newtask" name="newtask" placeholder="Nova tarefa" onChange={(event) => setTask(event.target.value)} />
+        <input type="text" id="newtask" name="newtask" placeholder="Nova tarefa" onChange={(event) => setTask([event.target.value])} />
       </label>
       <button type="submit">Adicionar</button>
     </form>

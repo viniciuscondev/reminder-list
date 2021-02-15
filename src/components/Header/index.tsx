@@ -61,7 +61,7 @@ export default function Header() {
           {session.user.email}
           {' '}
           <Link href="/dashboard"><button type="button">Dashboard</button></Link>
-          <button type="button" onClick={() => signOut()}>Sair</button>
+          <button type="button" onClick={() => signOut({ callbackUrl: '/' })}>Sair</button>
         </>
         )}
       </div>

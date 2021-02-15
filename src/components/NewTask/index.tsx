@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function NewTask() {
-  const [task, setTask] = useState([]);
+  const [task, setTask] = useState('');
+  const router = useRouter();
 
-  async function handleTask() {
-    // event.preventDefault();
+  async function handleTask(event) {
+    event.preventDefault();
 
     await fetch('/api/newtask', {
       method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(task),
+      body: task,
     });
+
+    router.reload();
   }
 
   useEffect(() => {}, []);
@@ -21,7 +24,7 @@ export default function NewTask() {
       <label htmlFor="newtask">
         Adicionar tarefa:
         {' '}
-        <input type="text" id="newtask" name="newtask" placeholder="Nova tarefa" onChange={(event) => setTask([event.target.value])} />
+        <input type="text" id="newtask" name="newtask" placeholder="Nova tarefa" onChange={(event) => setTask(event.target.value)} />
       </label>
       <button type="submit">Adicionar</button>
     </form>

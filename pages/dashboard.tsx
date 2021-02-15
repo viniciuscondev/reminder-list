@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSession } from 'next-auth/client';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 import Header from '../src/components/Header';
@@ -16,15 +16,15 @@ const TaskContainer = styled.div`
 
 export default function Home() {
   const [session, loading] = useSession();
-  const router = useRouter();
+  // const router = useRouter();
 
-  async function isAuth() {
-    if (await !session) { router.push('/'); }
-  }
+  // function isAuth() {
+  //   if (!session) { router.push('/'); }
+  // }
 
-  useEffect(() => {
-    isAuth();
-  }, []);
+  // useEffect(() => {
+  //   isAuth();
+  // }, []);
 
   return (
     <>

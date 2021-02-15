@@ -6,6 +6,7 @@ export default async function newTask(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'POST') {
     try {
       const task = req.body;
+
       const session = await getSession({ req });
 
       if (!task) {

@@ -4,6 +4,8 @@ import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
+import Modal from '../Modal';
+
 const TaskBox = styled.div`
   border: 1px solid #bebebe;
   padding: 5px;
@@ -34,7 +36,11 @@ export default function Task() {
 
     const parseResponse = await response.json();
 
-    setTasks(parseResponse.task);
+    if (parseResponse.task) {
+      setTasks(parseResponse.task);
+    } else {
+      setTasks(null);
+    }
   }
 
   async function DeleteTask(task) {
@@ -46,25 +52,35 @@ export default function Task() {
     router.reload();
   }
 
+  // async function UpdateTask(task) {
+  //   await fetch('/api/tasks', {
+  //     method: 'PUT',
+  //     body: task,
+  //   });
+  // }
+
   useEffect(() => {
     getTasks();
   }, []);
 
   return (
     <div>
-      {tasks.map((task, index) => (
+      {tasks === null ? (<h1>Não há tarefas cadastradas</h1>) : (
+        tasks.map((task, index) => (
 
-        <TaskBox key={index}>
-          <div>
-            <input type="checkbox" />
-            <span>{task}</span>
-          </div>
-          <div>
-            <button type="button">Editar</button>
-            <button type="button" onClick={() => DeleteTask(task)}>Deletar</button>
-          </div>
-        </TaskBox>
-      ))}
+          <TaskBox key={index}>
+            <div>
+              <input type="checkbox" />
+              <span>{task}</span>
+            </div>
+            <div>
+              <Modal task={task} index={index} />
+              <button type="button" onClick={() => DeleteTask(task)}>Deletar</button>
+            </div>
+          </TaskBox>
+        ))
+      )}
+
     </div>
   );
 }

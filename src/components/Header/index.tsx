@@ -68,7 +68,7 @@ export default function Header() {
         {session && (
         <>
           <SignedUser>
-            Signed in as
+            Autenticado como
             {' '}
             {session.user.email}
             {' '}

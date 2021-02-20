@@ -18,9 +18,9 @@ const GlobalStyle = createGlobalStyle`
 
 const theme = {
   colors: {
-    primary: '#f0f0f0',
-    secondary: '#83e98c',
-    background: '#2b2b2b',
+    primary: '#37492d',
+    secondary: '#8c9d75',
+    background: '#161c10',
   },
 };
 
@@ -30,6 +30,8 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet" />
+        <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/google/274/herb_1f33f.png" />
+        <title>Reminder List</title>
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>

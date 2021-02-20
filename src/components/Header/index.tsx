@@ -10,27 +10,29 @@ const NavBar = styled.nav`
   background-color: ${({ theme }) => theme.colors.background};
   filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, .3));
   padding: 15px;
-  color: ${({ theme }) => theme.colors.primary};
+  color: #fff;
     
   a {
-    color: ${({ theme }) => theme.colors.primary};
+    color: #fff;
     text-decoration: none;
     font-size: 20px;
     font-weight: bold;
   }
 
   span {
-    color: ${({ theme }) => theme.colors.primary};
+    color: #fff;
     font-size: 20px;
   }
 
   button {
     background-color: ${({ theme }) => theme.colors.primary};
+    color: #fff;
     margin-left: 20px;
     border: none;
-    padding: 5px 20px;
-    font-size: 16px;    
-    border-radius: 5px;
+    padding:6px 24px;
+    font-size: 16px;
+    font-weight: bold;  
+    border-radius: 6px;
     cursor: pointer;
     transition: .5s;
   }
@@ -38,6 +40,15 @@ const NavBar = styled.nav`
   button:hover {
     background-color: ${({ theme }) => theme.colors.secondary};
     //color: ${({ theme }) => theme.colors.primary};
+  }  
+`;
+
+const SignedUser = styled.div`
+  font-size: 16px;
+  display: inline;
+  
+  @media only screen and (max-width: 740px) {
+    display: none;
   }
 `;
 
@@ -56,10 +67,12 @@ export default function Header() {
         )}
         {session && (
         <>
-          Signed in as
-          {' '}
-          {session.user.email}
-          {' '}
+          <SignedUser>
+            Signed in as
+            {' '}
+            {session.user.email}
+            {' '}
+          </SignedUser>
           <Link href="/dashboard"><button type="button">Dashboard</button></Link>
           <button type="button" onClick={() => signOut({ callbackUrl: '/' })}>Sair</button>
         </>

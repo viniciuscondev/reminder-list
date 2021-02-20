@@ -12,30 +12,17 @@ const TaskContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 30px;
 `;
 
 export default function Home() {
   const [session, loading] = useSession();
-  // const router = useRouter();
-
-  // function isAuth() {
-  //   if (!session) { router.push('/'); }
-  // }
-
-  // useEffect(() => {
-  //   isAuth();
-  // }, []);
 
   return (
     <>
       <Header />
       {session ? (
         <>
-          <h1>
-            Olá,
-            {' '}
-            {session.user.name}
-          </h1>
           <TaskContainer>
             <NewTask />
             {loading ? (<Loading />) : (<Task />)}
